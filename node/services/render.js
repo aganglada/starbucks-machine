@@ -1,19 +1,24 @@
-export default (req, res, next) => {
+export default (view) => (req, res, next) => {
+
+  const getViewContent = require(`../../app/views/${view}/${view}`).default
+  const content = getViewContent()
 
   const html = `
     <!doctype html>
     <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Starbucks Machine</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>${content.title || 'Starbucks Machine'}</title>
+      <style>${content.css}</style>
     </head>
     <body>
-      <p>Starbucks Machine</p>
+      ${content.dom}
     </body>
     </html> 
   `
 
+  res.set('Content-Type', 'text/html')
   res.end(html)
 }

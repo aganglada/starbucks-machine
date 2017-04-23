@@ -1,12 +1,12 @@
 import express from 'express'
 
 import render from './services/render'
-import cache from './services/cache';
+import cache from './services/cache'
 import api from './services/api'
 
 const app = express()
 
-app.get('/', cache(10), render)
+app.get('/', cache(10), render('machine'))
 app.use('/api', api)
 
 app.listen(8080)

@@ -9,6 +9,7 @@
     "express": "^4.15.2",
     "express-graphql": "^0.6.4",
     "graphql": "^0.9.3",
+    "normalize.css": "^6.0.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },
@@ -29,7 +30,7 @@
     "webpack-dev-server": "^2.4.3"
   },
   "scripts": {
-    "start": "babel-node ./node",
+    "start": "nodemon --exec \"babel-node\" ./node",
     "dev": "npm run webpack:dev",
     "prod": "npm run webpack:prod && npm run copy:assets && npm run copy:manifest",
     "copy:assets": "cp -r app/resources/ assets/",
